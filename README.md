@@ -11,7 +11,6 @@ Before you can work on this repo, you must clone the repo at your local pc.
           $ git clone https://github.com/usuario/repo.git
           $ cd repo
 
-
 ## DEPENDENCIES
 
 Afte you have cloned it, we have to install or dependencies, without them or app will crush.
@@ -23,7 +22,6 @@ Afte you have cloned it, we have to install or dependencies, without them or app
           - With yarn
 
               $ yarn
-
 
 ## Finally
 
@@ -38,6 +36,5 @@ You can now run up the app. But you should check that de FrontEnd is active or a
                 - Without FrontEnd
 
                   Check <a href="https://insomnia.rest/">Insomnia</a>
-
 
 HAPPY HACKING 😎💻
