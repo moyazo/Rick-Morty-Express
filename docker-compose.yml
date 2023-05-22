@@ -1,15 +1,15 @@
 version: '3.7'
 services:
-  db:
-    container_name: 'GQL-Test'
-    image: postgres:13-alpine
-    environment:
-      POSTGRES_USER: GQL-Test
-      POSTGRES_DB: GQL-Test
-      POSTGRES_PASSWORD: GQL-Test
-    ports:
-      - 5432:5432
-    volumes:
-      - db-data:/var/lib/postgresql/data
+    db:
+        container_name: 'GQL-Test'
+        image: postgres:13-alpine
+        environment:
+            POSTGRES_USER: GQL-Test
+            POSTGRES_DB: GQL-Test
+            POSTGRES_PASSWORD: GQL-Test
+        ports:
+            - 5432:5432
+        volumes:
+            - db-data:/var/lib/postgresql/data
 volumes:
-  db-data:
+    db-data:
