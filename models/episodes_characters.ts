@@ -1,16 +1,20 @@
-'use strict'
-const { Model } = require('sequelize')
-module.exports = (sequelize, DataTypes) => {
-    class Episodes_Characters extends Model {
-        /**
-         * Helper method for defining associations.
-         * This method is not a part of Sequelize lifecycle.
-         * The `models/index` file will call this method automatically.
-         */
-        static associate(models) {
-            // define association here
-        }
+import { Sequelize, Model } from 'sequelize';
+import { DataType } from 'sequelize-typescript';
+
+class Episodes_Characters extends Model {
+    public id!: string;
+    public character_id!: string | null;
+    public episode_id!: string | null;
+    public createdAt!: Date;
+    public updatedAt!: Date;
+
+    // Define las asociaciones
+    public static associate(models: any): void {
+        // Define las asociaciones aquí
     }
+}
+
+export default (sequelize: Sequelize, DataTypes: typeof DataType) => {
     Episodes_Characters.init(
         {
             id: {
@@ -48,6 +52,8 @@ module.exports = (sequelize, DataTypes) => {
             sequelize,
             modelName: 'Episodes_Characters',
         }
-    )
-    return Episodes_Characters
-}
+    );
+
+    return Episodes_Characters;
+};
+

@@ -11,17 +11,19 @@ module.exports = {
             },
             character_id: {
                 allowNull: true,
-                type: Sequelize.STRING,
+                type: Sequelize.UUID,
+                defaultValue: Sequelize.UUIDV4,
                 references: {
-                    model: 'Character',
+                    model: 'Characters',
                     key: 'id',
                 },
             },
             episode_id: {
                 allowNull: true,
-                type: Sequelize.STRING,
+                type: Sequelize.UUID,
+                defaultValue: Sequelize.UUIDV4,
                 references: {
-                    model: 'Episode',
+                    model: 'Episodes',
                     key: 'id',
                 },
             },
