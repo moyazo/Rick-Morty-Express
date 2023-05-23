@@ -2,7 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import { Sequelize, DataTypes } from 'sequelize';
 import sequelize from 'sequelize-typescript';
-import type { ModelsObject } from './index.types';
+import type { ModelsObject as models } from './index.types';
 
 const basename = path.basename(__filename);
 
@@ -36,4 +36,4 @@ Object.keys(db).forEach((modelName) => {
     }
 });
 
-export default db as ModelsObject;
+export default db as models;
