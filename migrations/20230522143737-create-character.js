@@ -9,7 +9,7 @@ module.exports = {
                 primaryKey: true,
                 allowNull: false,
             },
-            character_id: {
+            api_id: {
                 type: Sequelize.INTEGER,
                 allowNull: false,
             },

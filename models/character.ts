@@ -1,30 +1,39 @@
-'use strict'
-const { Model } = require('sequelize')
-module.exports = (sequelize, DataTypes) => {
-    class Character extends Model {
-        /**
-         * Helper method for defining associations.
-         * This method is not a part of Sequelize lifecycle.
-         * The `models/index` file will call this method automatically.
-         */
-        static associate(models) {
-            Character.belongsTo(models.Location, {
-                as: 'origin',
-                foreignKey: 'origin_id',
-                onDelete: 'SET NULL',
-            })
-            Character.belongsTo(models.Location, {
-                as: 'location',
-                foreignKey: 'location_id',
-                onDelete: 'SET NULL',
-            })
-            Character.belongsToMany(models.Episode, {
-                as: 'episodes',
-                onDelete: 'CASCADE',
-                through: 'episodes_characters',
-            })
-        }
+import { Sequelize, Model } from 'sequelize'
+import { DataType } from 'sequelize-typescript'
+
+class Character extends Model {
+    public id!: string
+    public api_id!: number
+    public origin_id!: number | string
+    public location_id!: number | string
+    public name!: string | null
+    public gender!: string | null
+    public image!: string | null
+    public status!: 'Alive' | 'Dead' | 'Unknown' | null
+    public createdAt!: Date
+    public updatedAt!: Date
+
+    // Define las asociaciones
+    public static associate(models: any): void {
+        Character.belongsTo(models.Location, {
+            as: 'origin',
+            foreignKey: 'origin_id',
+            onDelete: 'SET NULL',
+        })
+        Character.belongsTo(models.Location, {
+            as: 'location',
+            foreignKey: 'location_id',
+            onDelete: 'SET NULL',
+        })
+        Character.belongsToMany(models.Episode, {
+            as: 'episodes',
+            onDelete: 'CASCADE',
+            through: 'episodes_characters',
+        })
     }
+}
+
+export default (sequelize: Sequelize, DataTypes: typeof DataType) => {
     Character.init(
         {
             id: {
@@ -33,7 +42,7 @@ module.exports = (sequelize, DataTypes) => {
                 primaryKey: true,
                 allowNull: false,
             },
-            character_id: {
+            api_id: {
                 type: DataTypes.INTEGER,
                 allowNull: false,
             },
@@ -74,7 +83,7 @@ module.exports = (sequelize, DataTypes) => {
             sequelize,
             modelName: 'Character',
             hooks: {
-                beforeSave: async (character, option) => {
+                beforeSave: async (character, options) => {
                     if (!character.origin_id) {
                         character.origin_id = 'Unknown'
                     }
@@ -85,5 +94,6 @@ module.exports = (sequelize, DataTypes) => {
             },
         }
     )
+
     return Character
 }
