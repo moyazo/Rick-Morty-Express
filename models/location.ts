@@ -1,4 +1,4 @@
-import { Model, Sequelize } from 'sequelize'
+import { BuildOptions, Model, Sequelize } from 'sequelize'
 import { DataType } from 'sequelize-typescript'
 
 class Location extends Model {
@@ -18,6 +18,11 @@ class Location extends Model {
         })
     }
 }
+
+export type LocationStatic = typeof Location & {
+    new (values?: object, options?: BuildOptions): Location
+}
+
 export default (sequelize: Sequelize, DataTypes: typeof DataType) => {
     Location.init(
         {

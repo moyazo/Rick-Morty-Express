@@ -1,4 +1,4 @@
-import { Sequelize, Model } from 'sequelize'
+import { Sequelize, Model, BuildOptions } from 'sequelize'
 import { DataType } from 'sequelize-typescript'
 
 class User extends Model {
@@ -15,6 +15,10 @@ class User extends Model {
     public static associate(models: any): void {
         // Define las asociaciones aquí
     }
+}
+
+export type UserStatic = typeof User & {
+    new (values?: object, options?: BuildOptions): User
 }
 
 export default (sequelize: Sequelize, DataTypes: typeof DataType) => {

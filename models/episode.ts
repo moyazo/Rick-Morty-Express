@@ -1,4 +1,4 @@
-import { Sequelize, Model } from 'sequelize'
+import { Sequelize, Model, BuildOptions } from 'sequelize'
 import { DataType } from 'sequelize-typescript'
 
 class Episode extends Model {
@@ -18,6 +18,10 @@ class Episode extends Model {
             through: 'episodes_characters',
         })
     }
+}
+
+export type EpisodeStatic = typeof Episode & {
+    new (values?: object, options?: BuildOptions): Episode
 }
 
 export default (sequelize: Sequelize, DataTypes: typeof DataType) => {
