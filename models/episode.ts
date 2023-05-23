@@ -1,14 +1,14 @@
-import { Sequelize, Model } from 'sequelize';
-import { DataType } from 'sequelize-typescript';
+import { Sequelize, Model } from 'sequelize'
+import { DataType } from 'sequelize-typescript'
 
 class Episode extends Model {
-    public id!: string;
-    public api_id!: number;
-    public name!: string | null;
-    public air_date!: Date | null;
-    public episode!: string | null;
-    public createdAt!: Date;
-    public updatedAt!: Date;
+    public id!: string
+    public api_id!: number
+    public name!: string | null
+    public air_date!: Date | null
+    public episode!: string | null
+    public createdAt!: Date
+    public updatedAt!: Date
 
     // Define las asociaciones
     public static associate(models: any): void {
@@ -16,7 +16,7 @@ class Episode extends Model {
             as: 'characters',
             onDelete: 'CASCADE',
             through: 'episodes_characters',
-        });
+        })
     }
 }
 
@@ -58,9 +58,9 @@ export default (sequelize: Sequelize, DataTypes: typeof DataType) => {
             sequelize,
             modelName: 'Episode',
         }
-    );
+    )
 
-    return Episode;
-};
+    return Episode
+}
 
-export { Episode };
+export { Episode }

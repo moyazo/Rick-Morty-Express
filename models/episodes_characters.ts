@@ -1,12 +1,12 @@
-import { Sequelize, Model } from 'sequelize';
-import { DataType } from 'sequelize-typescript';
+import { Sequelize, Model } from 'sequelize'
+import { DataType } from 'sequelize-typescript'
 
 class Episodes_Characters extends Model {
-    public id!: string;
-    public character_id!: string | null;
-    public episode_id!: string | null;
-    public createdAt!: Date;
-    public updatedAt!: Date;
+    public id!: string
+    public character_id!: string | null
+    public episode_id!: string | null
+    public createdAt!: Date
+    public updatedAt!: Date
 
     // Define las asociaciones
     public static associate(models: any): void {
@@ -52,8 +52,7 @@ export default (sequelize: Sequelize, DataTypes: typeof DataType) => {
             sequelize,
             modelName: 'Episodes_Characters',
         }
-    );
+    )
 
-    return Episodes_Characters;
-};
-
+    return Episodes_Characters
+}

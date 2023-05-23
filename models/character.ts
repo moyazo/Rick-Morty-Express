@@ -1,17 +1,17 @@
-import { Sequelize, Model } from 'sequelize';
-import { DataType } from 'sequelize-typescript';
+import { Sequelize, Model } from 'sequelize'
+import { DataType } from 'sequelize-typescript'
 
 class Character extends Model {
-    public id!: string;
-    public api_id!: number;
-    public origin_id!: number | string;
-    public location_id!: number | string;
-    public name!: string | null;
-    public gender!: string | null;
-    public image!: string | null;
-    public status!: 'Alive' | 'Dead' | 'Unknown' | null;
-    public createdAt!: Date;
-    public updatedAt!: Date;
+    public id!: string
+    public api_id!: number
+    public origin_id!: number | string
+    public location_id!: number | string
+    public name!: string | null
+    public gender!: string | null
+    public image!: string | null
+    public status!: 'Alive' | 'Dead' | 'Unknown' | null
+    public createdAt!: Date
+    public updatedAt!: Date
 
     // Define las asociaciones
     public static associate(models: any): void {
@@ -19,17 +19,17 @@ class Character extends Model {
             as: 'origin',
             foreignKey: 'origin_id',
             onDelete: 'SET NULL',
-        });
+        })
         Character.belongsTo(models.Location, {
             as: 'location',
             foreignKey: 'location_id',
             onDelete: 'SET NULL',
-        });
+        })
         Character.belongsToMany(models.Episode, {
             as: 'episodes',
             onDelete: 'CASCADE',
             through: 'episodes_characters',
-        });
+        })
     }
 }
 
@@ -85,16 +85,15 @@ export default (sequelize: Sequelize, DataTypes: typeof DataType) => {
             hooks: {
                 beforeSave: async (character, options) => {
                     if (!character.origin_id) {
-                        character.origin_id = 'Unknown';
+                        character.origin_id = 'Unknown'
                     }
                     if (!character.location_id) {
-                        character.location_id = 'Unknown';
+                        character.location_id = 'Unknown'
                     }
                 },
             },
         }
-    );
+    )
 
-    return Character;
-};
-
+    return Character
+}

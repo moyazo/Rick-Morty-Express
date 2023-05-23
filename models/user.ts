@@ -1,15 +1,15 @@
-import { Sequelize, Model } from 'sequelize';
-import { DataType } from 'sequelize-typescript';
+import { Sequelize, Model } from 'sequelize'
+import { DataType } from 'sequelize-typescript'
 
 class User extends Model {
-    public id!: string;
-    public name!: string | null;
-    public username!: string | null;
-    public email!: string;
-    public password!: string;
-    public photo!: string | null;
-    public createdAt!: Date;
-    public updatedAt!: Date;
+    public id!: string
+    public name!: string | null
+    public username!: string | null
+    public email!: string
+    public password!: string
+    public photo!: string | null
+    public createdAt!: Date
+    public updatedAt!: Date
 
     // Define las asociaciones
     public static associate(models: any): void {
@@ -59,9 +59,9 @@ export default (sequelize: Sequelize, DataTypes: typeof DataType) => {
             sequelize,
             modelName: 'User',
         }
-    );
+    )
 
-    return User;
-};
+    return User
+}
 
-export { User };
+export { User }
