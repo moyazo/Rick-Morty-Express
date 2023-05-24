@@ -1,9 +1,18 @@
+import { charactersFromApi }  from "../services/api/rickApi";
+
 const resolvers = {
     Query: {
-        eldiablo: {
-            el: () => 'el',
-            diablo: () => 'diablo',
-        },
+        syncApi: async () => {
+            try {
+                const synchronized = await charactersFromApi();
+                if(!synchronized) {
+                    return 'No se puedo sincrinizar los datos';
+                }
+                return 'Datos sincronizados';
+            } catch (error) {
+                return 'Error al sincronizar: ' + error.message;
+            }
+        }
     },
 }
 

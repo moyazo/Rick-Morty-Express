@@ -1,13 +1,17 @@
 import { Sequelize, Model, BuildOptions } from 'sequelize';
-import { DataType } from 'sequelize-typescript';
+import type DataTypesType from 'sequelize/types/data-types'
+import { ModelsObject } from './index.types';
 
 
-class Character extends Model {
+
+
+export class Character extends Model {
     public id!: string
     public api_id!: number
     public origin_id!: number | string
     public location_id!: number | string
     public name!: string | null
+    public species!: string | null
     public gender!: string | null
     public image!: string | null
     public status!: 'Alive' | 'Dead' | 'Unknown' | null
@@ -15,7 +19,7 @@ class Character extends Model {
     public updatedAt!: Date
 
     // Define las asociaciones
-    public static associate(models: any): void {
+    public static associate(models: ModelsObject): void {
         Character.belongsTo(models.Location, {
             as: 'origin',
             foreignKey: 'origin_id',
@@ -38,7 +42,8 @@ export type CharacterStatic = typeof Character & {
     new (values?: object, options?: BuildOptions): Character
 }
 
-export default (sequelize: Sequelize, DataTypes: typeof DataType) => {
+export default (sequelize: Sequelize, DataTypes: typeof DataTypesType) => {
+
     Character.init(
         {
             id: {
@@ -64,6 +69,10 @@ export default (sequelize: Sequelize, DataTypes: typeof DataType) => {
                 allowNull: true,
             },
             gender: {
+                type: DataTypes.STRING,
+                allowNull: true,
+            },
+            species: {
                 type: DataTypes.STRING,
                 allowNull: true,
             },
@@ -99,6 +108,6 @@ export default (sequelize: Sequelize, DataTypes: typeof DataType) => {
             },
         }
     )
-
+    
     return Character
 }

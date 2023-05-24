@@ -29,6 +29,10 @@ module.exports = {
                 type: Sequelize.STRING,
                 allowNull: true,
             },
+            species: {
+                type: Sequelize.STRING,
+                allowNull: true,
+            },
             image: {
                 type: Sequelize.STRING,
                 allowNull: true,

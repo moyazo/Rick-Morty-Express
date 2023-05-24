@@ -1,5 +1,5 @@
 import { Sequelize } from 'sequelize'
-import sequelize from 'sequelize-typescript';
+import sequelize from '../src/services/sequelize'
 import type { UserStatic } from './user'
 import type { CharacterStatic } from './character'
 import type { EpisodeStatic } from './episode'
@@ -9,9 +9,9 @@ import type { Episodes_CharactersStatic } from './episodes_characters'
 export type ModelsObject = {
   Sequelize: typeof Sequelize
   sequelize: typeof sequelize
-  user: UserStatic
-  character: CharacterStatic
-  location: LocationStatic
-  episode: EpisodeStatic
-  episodesCharacters: Episodes_CharactersStatic
+  User: UserStatic
+  Character: CharacterStatic
+  Location: LocationStatic
+  Episode: EpisodeStatic
+  EpisodesCharacters: Episodes_CharactersStatic
 }

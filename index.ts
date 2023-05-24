@@ -1,20 +1,15 @@
 import express, { Express, Request, Response } from 'express'
-import { ApolloServer } from 'apollo-server-express'
+import apolloServer from './src/apollo/server';
 import bodyParser from 'body-parser'
 import dotenv from 'dotenv'
 import cors from 'cors'
-import typeDefs from './src/typeDefs/testDefs'
-import resolvers from './src/resolvers/resolvers'
+import apiRoute  from './src/routes/api';
 const app = express()
 
 const startApp = async () => {
-    const apolloServer = new ApolloServer({
-        typeDefs,
-        resolvers,
-    })
+    
     await apolloServer.start()
     apolloServer.applyMiddleware({ app })
-
     dotenv.config()
     app.use(cors())
     const port = process.env.PORT || 8000
@@ -24,6 +19,8 @@ const startApp = async () => {
             extended: true,
         })
     )
+
+    app.use('/apiSync', apiRoute);
     try {
         app.listen(port, () => {
             console.log(`App running on ${port}`)

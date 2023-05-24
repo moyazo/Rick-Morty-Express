@@ -1,7 +1,8 @@
-import { BuildOptions, Model, Sequelize } from 'sequelize'
-import { DataType } from 'sequelize-typescript'
+import { Sequelize, Model, BuildOptions } from 'sequelize';
+import type DataTypesType from 'sequelize/types/data-types'
+import { ModelsObject } from './index.types';
 
-class Location extends Model {
+export class Location extends Model {
     public id!: string
     public api_id!: number
     public name!: string | null
@@ -11,7 +12,7 @@ class Location extends Model {
     public updatedAt!: Date
 
     // Define las asociaciones
-    public static associate(models: any): void {
+    public static associate(models: ModelsObject): void {
         Location.hasMany(models.Character, {
             as: 'characters',
             foreignKey: 'locationId',
@@ -23,7 +24,7 @@ export type LocationStatic = typeof Location & {
     new (values?: object, options?: BuildOptions): Location
 }
 
-export default (sequelize: Sequelize, DataTypes: typeof DataType) => {
+export default (sequelize: Sequelize, DataTypes: typeof DataTypesType) => {
     Location.init(
         {
             id: {
@@ -64,5 +65,4 @@ export default (sequelize: Sequelize, DataTypes: typeof DataType) => {
     )
 
     return Location
-}
-export { Location }
+} 

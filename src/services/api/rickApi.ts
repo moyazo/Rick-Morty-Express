@@ -1,44 +1,57 @@
 import  models from '../../../models/index';
-async function charactersFromApi() {
+import { ModelsObject } from '../../../models/index.types'
+/* public id!: string
+public api_id!: number
+public origin_id!: number | string
+public location_id!: number | string
+public name!: string | null
+public gender!: string | null
+public image!: string | null
+public status!: 'Alive' | 'Dead' | 'Unknown' | null*/
+
+
+export async function charactersFromApi(): Promise<boolean> {
     try {
         for (let i = 1; i < 42; i++) {
-            const response = await fetch(
-                `https://rickandmortyapi.com/api/character?page=${i}`
-            );
+            const response = await fetch(`https://rickandmortyapi.com/api/character?page=${i}`);
             const data = await response.json();
             const results = data.results;
             const responseResults = results.map((result) => ({
-                character_id: result.id,
+                api_id: result.id,
+                origin_id: result.origin.url.split("/").pop(),
+                location_id: result.location.url.split("/").pop(),
                 name: result.name,
                 status: result.status,
+                gender: result.gender,
                 species: result.species,
-                image: result.image,
+                image: result.image
             }));
 
             const characterToCreate = [];
-            const existedResults = await models.character.findAll();
+            const existedResults = await models.Character.findAll();
 
             for (const item of responseResults) {
                 const match = existedResults.find(
                     (existedResult) =>
-                        existedResult.api_id === item.character_id
+                        existedResult.api_id === item.api_id
                 );
                 if (!match) {
                     characterToCreate.push(item);
                 }
             }
             if (characterToCreate.length > 0) {
-                models.character.bulkCreate(characterToCreate);
+                models.Character.bulkCreate(characterToCreate);
             }
         }
-        await getEpisodes();
+        return true;
+       // await getEpisodes();
     } catch (error) {
         console.log('Error al sincronizar los personajes ' + error.message);
     }
 }
 
 
-async function getEpisodes() {
+/*async function getEpisodes() {
     try {
         for (let i = 0;i < 3;i++) {
             const response = await fetch(
@@ -77,4 +90,4 @@ async function getEpisodes() {
     } catch (error) {
         console.log(error.message);
     }
-}
+}*/
