@@ -1,10 +1,10 @@
-import { charactersFromApi }  from "../services/api/rickApi";
+import { locationsFromApi }  from "../services/api/rickApi";
 
 const resolvers = {
     Query: {
         syncApi: async () => {
             try {
-                const synchronized = await charactersFromApi();
+                const synchronized = await locationsFromApi();
                 if(!synchronized) {
                     return 'No se puedo sincrinizar los datos';
                 }

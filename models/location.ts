@@ -14,8 +14,12 @@ export class Location extends Model {
     // Define las asociaciones
     public static associate(models: ModelsObject): void {
         Location.hasMany(models.Character, {
-            as: 'characters',
-            foreignKey: 'locationId',
+            as: 'characters_location',
+            foreignKey: 'location_id',
+        })
+        Location.hasMany(models.Character, {
+            as: 'characters_origin',
+            foreignKey: 'origin_id',
         })
     }
 }

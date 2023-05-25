@@ -15,11 +15,11 @@ module.exports = {
             },
             origin_id: {
                 type: Sequelize.INTEGER,
-                allowNull: false,
+                allowNull: true,
             },
             location_id: {
                 type: Sequelize.INTEGER,
-                allowNull: false,
+                allowNull: true,
             },
             name: {
                 type: Sequelize.STRING,

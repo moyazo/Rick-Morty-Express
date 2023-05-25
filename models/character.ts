@@ -59,6 +59,7 @@ export default (sequelize: Sequelize, DataTypes: typeof DataTypesType) => {
             origin_id: {
                 type: DataTypes.INTEGER,
                 allowNull: false,
+                
             },
             location_id: {
                 type: DataTypes.INTEGER,
